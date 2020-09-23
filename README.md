@@ -17,8 +17,11 @@ $ mystars --list
 ...
 $ mystars --list | wc -l
 139
-
 ```
+
+To Install:
+
+`pip install git+https://github.com/seanbreckenridge/oh-my-stars`
 
 ---
 
