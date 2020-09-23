@@ -159,7 +159,7 @@ def main(args=None):
         try:
             t1 = datetime.now()
             search_result = []
-            if parsed_args.list or not bool(parsed_args.keywords):
+            if parsed_args.list or (len(parsed_args.keywords) == 0 and parsed_args.language is None):
                 search_result = db.all_repos()
             else:
                 search_result = db.search(parsed_args.language, parsed_args.keywords)
