@@ -8,7 +8,7 @@ Example:
 
 (One of my repos, and one of my starred repos)
 
-```
+```shell
  $ mystars mint
 seanbreckenridge/mint [https://github.com/seanbreckenridge/mint] Python Wrapper script/code to interact with mintable; to keep track of my accounts/transactions and create a personal budget.
 kevinschaich/mintable [https://github.com/kevinschaich/mintable] TypeScript 🍃 Automate your personal finances – for free, with no ads, and no data collection.
@@ -17,6 +17,13 @@ $ mystars --list
 ...
 $ mystars --list | wc -l
 139
+```
+
+Since this is all a one-liner, that means I can also fzf against all the results:
+
+```shell
+# https://github.com/seanbreckenridge/oh-my-stars
+alias mystarsfzf="mystars | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf"
 ```
 
 To Install:
