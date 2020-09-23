@@ -68,18 +68,18 @@ class SearchResultView(object):
 
         else:
             total = len(search_result)
-            self.print_summary(total)
+            # self.print_summary(total)
 
-            for repo in search_result[1:]:
+            for repo in search_result:
 
-                self._print('', end='\n')
+                # self._print('', end='\n')
                 self.print_repo_name(repo, keywords)
                 self.print_repo_url(repo)
                 self.print_repo_language(repo)
                 self.print_repo_description(repo, keywords)
 
-            if total > 10:
-                self.print_summary(total)
+            #if total > 10:
+            #    self.print_summary(total)
 
     def print_summary(self, count):
         self._print('', end='\n')

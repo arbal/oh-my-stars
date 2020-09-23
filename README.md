@@ -1,3 +1,23 @@
+## FORKED CHANGES
+
+In addition to any of your starred repos, my fork also indexes all of your own repos, so its easy to search/grab the link for one of those.
+
+It also simplifies the summary, and doesn't print a count/summary, and just prints the matches one after another.
+
+Example:
+
+(One of my repos, and one of my starred repos)
+
+```
+ $ mystars mint
+seanbreckenridge/mint [https://github.com/seanbreckenridge/mint] Python
+Wrapper script/code to interact with mintable; to keep track of my accounts/transactions and create a personal budget.
+kevinschaich/mintable [https://github.com/kevinschaich/mintable] TypeScript
+🍃 Automate your personal finances – for free, with no ads, and no data collection.
+```
+
+---
+
 # oh-my-stars
 
 Search your stars locally.

@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division, print_function, unicode_literals)
 from builtins import *
 
+import itertools
 from datetime import datetime
 
 from colorama import Fore
@@ -97,13 +98,14 @@ def main(args=None):
                 code = input('Enter 2FA code: ')
             return code
         g = login(user, password, two_factor_callback=gh2f)
-        
+
         mode = 't' if parsed_args.reindex else 'w'
 
         with StarredDB(MY_STARS_HOME, mode) as db:
             repo_list = []
 
-            for repo in g.iter_starred(sort='created', direction='desc', number=-1):
+            # CHANGED: iter all of my repos, in addition to any starred ones
+            for repo in itertools.chain(g.iter_repos(), g.iter_starred(sort='created', direction='desc', number=-1)):
 
                 if db.get_latest_repo_full_name() == repo.full_name:
                     break
@@ -123,7 +125,7 @@ def main(args=None):
                 db.update(repo_list)
 
                 t2 = datetime.now()
-                print_text('Done. (took {:d}s)'.format((t2 - t1).total_seconds()),
+                print_text('Done Saving Repo Data. (took {}s)'.format(int((t2 - t1).total_seconds())),
                            color=Fore.RED if enable_color else None)
             else:
                 print_text('No new stars found.', color=Fore.RED if enable_color else None)
@@ -138,9 +140,7 @@ def main(args=None):
             filename = 'ohmystars-v2.alfredworkflow'
 
         ret = subprocess.call(' '.join([
-            
             'curl -s -o /tmp/{}'.format(filename),
-
             '-H "Accept:application/octet-stream"',
 
             '"{url}{filename}"'.format(
