@@ -163,6 +163,8 @@ def main(args=None):
                 search_result = db.all_repos()
             else:
                 search_result = db.search(parsed_args.language, parsed_args.keywords)
+            # sort by repo name
+            search_result.sort(key=lambda r: r['full_name'].split("/")[-1].lower())
 
             t2 = datetime.now()
 
