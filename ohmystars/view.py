@@ -110,6 +110,8 @@ class SearchResultView(object):
         if desc:
             text = self._highlight_keywords(desc, keywords, fore_color=Fore.WHITE)
             self._print(text, Fore.WHITE, end='\n')
+        else:
+            print()  # for the newline
 
     def _print(self, text='', fore_color=Fore.WHITE, end=' '):
         if self.enable_color:
