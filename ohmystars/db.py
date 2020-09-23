@@ -81,6 +81,9 @@ class StarredDB(object):
         if len(latest_repo) > 0:
             return latest_repo[0].get('full_name')
 
+    def all_repos(self):
+        return self._db.table().search(lambda _: True)
+
     def search(self, languages, keywords):
 
         # self._build_index()

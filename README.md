@@ -2,7 +2,7 @@
 
 In addition to any of your starred repos, my fork also indexes all of your own repos, so its easy to search/grab the link for one of those.
 
-It also simplifies the summary, and doesn't print a count/summary, and just prints the matches one after another.
+It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another.
 
 Example:
 
@@ -10,10 +10,14 @@ Example:
 
 ```
  $ mystars mint
-seanbreckenridge/mint [https://github.com/seanbreckenridge/mint] Python
-Wrapper script/code to interact with mintable; to keep track of my accounts/transactions and create a personal budget.
-kevinschaich/mintable [https://github.com/kevinschaich/mintable] TypeScript
-🍃 Automate your personal finances – for free, with no ads, and no data collection.
+seanbreckenridge/mint [https://github.com/seanbreckenridge/mint] Python Wrapper script/code to interact with mintable; to keep track of my accounts/transactions and create a personal budget.
+kevinschaich/mintable [https://github.com/kevinschaich/mintable] TypeScript 🍃 Automate your personal finances – for free, with no ads, and no data collection.
+# just print all results
+$ mystars --list
+...
+$ mystars --list | wc -l
+139
+
 ```
 
 ---

@@ -103,7 +103,7 @@ class SearchResultView(object):
     def print_repo_language(self, repo):
         lang = repo.get('language')
         if lang:
-            self._print(lang, Fore.BLUE, end='\n')
+            self._print(lang, Fore.BLUE)
 
     def print_repo_description(self, repo, keywords):
         desc = repo.get('description')

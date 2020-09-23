@@ -59,6 +59,8 @@ def main(args=None):
     parser.add_argument('-l', '--language', help='Filter by language', nargs='+')
     parser.add_argument('-u', '--update', action='store_true',
                         help='Create(first time) or update the local stars index')
+    parser.add_argument('-L', '--list', action='store_true',
+                        help='List all stars in the index')
     parser.add_argument('-r', '--reindex', action='store_true', help='Re-create the local stars index')
     parser.add_argument('-c', '--color', default='always', choices=['always', 'auto', 'never'], metavar='WHEN',
                         help='Colorize the output; WHEN can be \'always\' (default if omitted), \'auto\', or \'never\'')
@@ -152,15 +154,16 @@ def main(args=None):
         ]), shell=True)
 
         sys.exit(ret)
-       
-    if not parsed_args.keywords and not parsed_args.language:
-        parser.print_help()
-        sys.exit(0)
 
     with StarredDB(MY_STARS_HOME, mode='r') as db:
         try:
             t1 = datetime.now()
-            search_result = db.search(parsed_args.language, parsed_args.keywords)
+            search_result = []
+            if parsed_args.list or not bool(parsed_args.keywords):
+                search_result = db.all_repos()
+            else:
+                search_result = db.search(parsed_args.language, parsed_args.keywords)
+
             t2 = datetime.now()
 
             view = SearchResultView(
