@@ -22,17 +22,11 @@ $ mystars --list | wc -l
 I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser.
 
 ```
-#!/bin/bash
-# https://github.com/seanbreckenridge/oh-my-stars
-PICKED="$(mystars | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf)" || exit $?
-printf '%s\n' "$PICKED"
-URL="$(echo "$PICKED" | urlextract)"
-[[ -n "$URL" ]] && {
-	clp-args "$URL"
-	printf '\n'
-}
+>>>PMARK
+perl -E 'print "`"x3, "\n"'
+curl -s https://sean.fish/d/mystarsfzf
+perl -E 'print "`"x3, "\n"'
 ```
-
 - The `sed` command removes colors from text
 - Uses [`urlextract`](https://pypi.org/project/urlextract/), `clp-args` sends what it recieves to my clipboard, STDOUT and sends a notification.
 
