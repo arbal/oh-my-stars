@@ -19,7 +19,7 @@ $ mystars --list | wc -l
 139
 ```
 
-I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser.
+I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser:
 
 ```
 #!/bin/bash
@@ -27,14 +27,15 @@ I commonly use the following script, to search for a repo I've starred, copy the
 PICKED="$(mystars | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf)" || exit $?
 printf '%s\n' "$PICKED"
 URL="$(echo "$PICKED" | urlextract)"
+# if a URL was extracted, open it
 [[ -n "$URL" ]] && {
-	clp-args "$URL"
-	printf '\n'
+	openurl "$URL" >/dev/null
+	printf '%s' "$URL" | clipcopy
 }
 ```
 
 - The `sed` command removes colors from text
-- Uses [`urlextract`](https://pypi.org/project/urlextract/), `clp-args` sends what it recieves to my clipboard, STDOUT and sends a notification.
+- Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
 
 To Install:
 

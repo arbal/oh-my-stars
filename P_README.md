@@ -19,7 +19,7 @@ $ mystars --list | wc -l
 139
 ```
 
-I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser.
+I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser:
 
 ```
 >>>PMARK
@@ -28,7 +28,7 @@ curl -s https://sean.fish/d/mystarsfzf
 perl -E 'print "`"x3, "\n"'
 ```
 - The `sed` command removes colors from text
-- Uses [`urlextract`](https://pypi.org/project/urlextract/), `clp-args` sends what it recieves to my clipboard, STDOUT and sends a notification.
+- Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
 
 To Install:
 
