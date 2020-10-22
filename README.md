@@ -2,7 +2,7 @@
 
 In addition to any of your starred repos, my fork also indexes all of your own repos, so its easy to search/grab the link for one of those.
 
-It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another.
+It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
 
 Example:
 
@@ -24,7 +24,7 @@ I commonly use the following script, to search for a repo I've starred, copy the
 ```
 #!/bin/bash
 # https://github.com/seanbreckenridge/oh-my-stars
-PICKED="$(mystars | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf)" || exit $?
+PICKED="$(mystars "$@" | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf)" || exit $?
 printf '%s\n' "$PICKED"
 URL="$(echo "$PICKED" | urlextract)"
 # if a URL was extracted, open it

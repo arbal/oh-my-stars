@@ -2,7 +2,7 @@
 
 In addition to any of your starred repos, my fork also indexes all of your own repos, so its easy to search/grab the link for one of those.
 
-It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another.
+It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
 
 Example:
 
