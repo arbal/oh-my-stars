@@ -23,11 +23,29 @@ I commonly use the following script, to search for a repo I've starred, copy the
 
 ```
 >>>PMARK
-perl -E 'print "`"x3, "\n"'
+perl -E 'print "`"x3, "bash", "\n"'
 curl -s https://sean.fish/d/mystarsfzf
 perl -E 'print "`"x3, "\n"'
 ```
 - Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
+
+
+I've also removed the limit for the number of entries the `-3` flag returns (`JSON`), so this can be used with [`jq`](https://stedolan.github.io/jq/) to parse/search the results:
+
+```bash
+$ mystars --list -c=never -3 | jq -r '.items | .[3]'
+{
+  "title": "seanbreckenridge/albums",
+  "subtitle": "an amalgamation of acclaimed album lists [Python]",
+  "arg": "https://github.com/seanbreckenridge/albums"
+}
+$ mystars --list -c=never -3 | jq -r '.items | .[] | .arg' | shuf -n5
+https://github.com/seanbreckenridge/vps
+https://github.com/seanbreckenridge/discord_data
+https://github.com/sonic-pi-net/sonic-pi
+https://github.com/seanbreckenridge/jikan-rest-docker
+https://github.com/karlicoss/cachew
+```
 
 To Install:
 

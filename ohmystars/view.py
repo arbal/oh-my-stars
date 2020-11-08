@@ -51,8 +51,8 @@ class SearchResultView(object):
                         ))
                     results.append('</item>')
 
-                if count >= 10:
-                    break
+                #if count >= 10:
+                #    break
 
             if self.alfred_v3:
                 alfred_output = json.dumps({
