@@ -27,7 +27,6 @@ perl -E 'print "`"x3, "\n"'
 curl -s https://sean.fish/d/mystarsfzf
 perl -E 'print "`"x3, "\n"'
 ```
-- The `sed` command removes colors from text
 - Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
 
 To Install:

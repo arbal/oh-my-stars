@@ -24,7 +24,7 @@ I commonly use the following script, to search for a repo I've starred, copy the
 ```
 #!/bin/bash
 # https://github.com/seanbreckenridge/oh-my-stars
-PICKED="$(mystars "$@" | sed 's/\x1B\[[0-9;]\+[A-Za-z]//g' | fzf)" || exit $?
+PICKED="$(mystars "$@" | fzf --ansi)" || exit $?
 printf '%s\n' "$PICKED"
 URL="$(echo "$PICKED" | urlextract)"
 # if a URL was extracted, open it
@@ -34,7 +34,6 @@ URL="$(echo "$PICKED" | urlextract)"
 }
 ```
 
-- The `sed` command removes colors from text
 - Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
 
 To Install:
