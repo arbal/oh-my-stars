@@ -2,7 +2,6 @@
 from __future__ import (absolute_import, division, print_function, unicode_literals)
 from builtins import *
 
-import itertools
 from datetime import datetime
 
 from colorama import Fore
@@ -106,21 +105,33 @@ def main(args=None):
         with StarredDB(MY_STARS_HOME, mode) as db:
             repo_list = []
 
-            # CHANGED: iter all of my repos, in addition to any starred ones
-            for repo in itertools.chain(g.iter_repos(), g.iter_starred(sort='created', direction='desc', number=-1)):
+            # CHANGED: helper for the two loops below
+            def create_repo(repo_obj):
+                print_text(repo_obj.full_name, color=Fore.BLUE if enable_color else None)
+                return {
+                    'full_name': repo_obj.full_name,
+                    'name': repo_obj.name,
+                    'url': repo_obj.html_url,
+                    'language': repo_obj.language,
+                    'description': repo_obj.description,
+                }
 
+
+            # CHANGED: iter starred repos, same basic logic as master
+            for repo in g.iter_starred(sort='created', direction='desc', number=-1):
+                # for newly starred repos, if this matches the most recently starred repo, exit
                 if db.get_latest_repo_full_name() == repo.full_name:
                     break
+                repo_list.append(create_repo(repo))
 
-                print_text(repo.full_name, color=Fore.BLUE if enable_color else None)
+            # get a list of names so we can compare items
+            # iter all of my repos, only adding new items
+            # could break here, but generally a user doesnt have thousands of repos
+            names = set([r['full_name'] for r in db.all_repos()])
+            for repo in g.iter_repos():
+                if repo.full_name not in names:
+                    repo_list.append(create_repo(repo))
 
-                repo_list.append({
-                    'full_name': repo.full_name,
-                    'name': repo.name,
-                    'url': repo.html_url,
-                    'language': repo.language,
-                    'description': repo.description,
-                })
             if repo_list:
                 t1 = datetime.now()
                 print_text('Saving repo data...', color=Fore.GREEN if enable_color else None, reset_color=False)
