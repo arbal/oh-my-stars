@@ -82,7 +82,14 @@ class StarredDB(object):
             return latest_repo[0].get('full_name')
 
     def all_repos(self):
-        return self._db.table().search(lambda _: True)
+        all_items = self._db.table().search(lambda _: True)
+        unique_items = []
+        emitted = set()
+        for repo in all_items:
+            if repo["full_name"] not in emitted:
+                emitted.add(repo["full_name"])
+                unique_items.append(repo)
+        return unique_items
 
     def search(self, languages, keywords):
 
