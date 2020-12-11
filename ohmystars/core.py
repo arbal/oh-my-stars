@@ -116,14 +116,6 @@ def main(args=None):
                     'description': repo_obj.description,
                 }
 
-
-            # CHANGED: iter starred repos, same basic logic as master
-            for repo in g.iter_starred(sort='created', direction='desc', number=-1):
-                # for newly starred repos, if this matches the most recently starred repo, exit
-                if db.get_latest_repo_full_name() == repo.full_name:
-                    break
-                repo_list.append(create_repo(repo))
-
             # get a list of names so we can compare items
             # iter all of my repos, only adding new items
             # could break here, but generally a user doesnt have thousands of repos
@@ -131,6 +123,17 @@ def main(args=None):
             for repo in g.iter_repos():
                 if repo.full_name not in names:
                     repo_list.append(create_repo(repo))
+
+            # github username
+            user_name = g.user().login
+
+            # CHANGED: iter starred repos, same basic logic as master
+            for repo in g.iter_starred(sort='created', direction='desc', number=-1):
+                # for newly starred repos, if this matches the most recently starred repo, exit
+                # ignores any of my own repos in the search
+                if db.get_latest_repo_full_name(user_name) == repo.full_name:
+                    break
+                repo_list.append(create_repo(repo))
 
             if repo_list:
                 t1 = datetime.now()

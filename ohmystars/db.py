@@ -76,10 +76,15 @@ class StarredDB(object):
         self._idx.update(operations.set('docs', language_docs), Query().name == 'language')
         self._idx.update(operations.set('docs', keyword_docs), Query().name == 'keyword')
 
-    def get_latest_repo_full_name(self):
-        latest_repo = self._db.table('latest_repo').all()
-        if len(latest_repo) > 0:
-            return latest_repo[0].get('full_name')
+    # accepts my github username as argument
+    # returns the first repo which doesnt match that
+    def get_latest_repo_full_name(self, my_username: str):
+        for repo in self.all_repos():
+            # if this isnt one of my repos
+            repo_user: str = repo['full_name'].split('/')[0]
+            if not repo_user.startswith(my_username):
+                return repo.get('full_name')
+        return None
 
     def all_repos(self):
         all_items = self._db.table().search(lambda _: True)
