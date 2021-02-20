@@ -19,18 +19,18 @@ $ mystars --list | wc -l
 139
 ```
 
-I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser:
+I commonly use the following script, to search for a repo I've starred and copy the link to my clipboard.
 
 ```bash
 #!/bin/bash
 # https://github.com/seanbreckenridge/oh-my-stars
 PICKED="$(mystars "$@" | fzf --ansi)" || exit $?
-printf '%s\n' "$PICKED"
-URL="$(echo "$PICKED" | urlextract)"
+printf '%s\n' "${PICKED}"
+URL="$(echo "${PICKED}" | urlextract)"
 # if a URL was extracted, open it
-[[ -n "$URL" ]] && {
-	openurl "$URL" >/dev/null
-	printf '%s' "$URL" | clipcopy
+[[ -n "${URL}" ]] && {
+	printf '%s' "${URL}" | clipcopy
+	printf '%s\n' "${URL}"
 }
 ```
 

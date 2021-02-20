@@ -19,7 +19,7 @@ $ mystars --list | wc -l
 139
 ```
 
-I commonly use the following script, to search for a repo I've starred, copy the link to my clipboard and open it in my browser:
+I commonly use the following script, to search for a repo I've starred and copy the link to my clipboard.
 
 ```
 >>>PMARK
