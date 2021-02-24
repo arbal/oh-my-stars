@@ -87,7 +87,7 @@ class StarredDB(object):
         return None
 
     def all_repos(self):
-        all_items = self._db.table().search(lambda _: True)
+        all_items = self._db.table('_default').search(lambda _: True)
         unique_items = []
         emitted = set()
         for repo in all_items:
