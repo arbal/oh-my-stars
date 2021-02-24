@@ -20,7 +20,7 @@ class StarredDB(object):
         self._db = TinyDB(os.path.join(my_stars_home, 'mystars.db'), storage=CachingMiddleware(JSONStorage))
 
         if mode == 't':
-            self._db.purge_tables()
+            self._db.drop_tables()
 
         self._idx = self._db.table('index')
 
@@ -47,7 +47,7 @@ class StarredDB(object):
     def update(self, repo_list):
 
         if repo_list:
-            self._db.table('latest_repo').purge()
+            self._db.table('latest_repo').truncate()
             self._db.table('latest_repo').insert(repo_list[0])
 
         language_docs = self._get_index_docs('language')

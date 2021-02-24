@@ -7,8 +7,8 @@ import ohmystars
 install_requires = [
     'colorama>=0.3.9',
     'future>=0.16.0',
-    'github3.py>=0.9.6',
-    'tinydb>=3.7.0',
+    'github3.py>=1.0.2',
+    'tinydb>=4.4.0',
     'ujson>=1.35',
 ]
 
