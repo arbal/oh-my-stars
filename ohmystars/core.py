@@ -105,7 +105,7 @@ def main(args=None):
         with StarredDB(MY_STARS_HOME, mode) as db:
             repo_list = []
 
-            # CHANGED: helper for the two loops below
+            # helper to create a repo document
             def create_repo(repo_obj):
                 print_text(repo_obj.full_name, color=Fore.BLUE if enable_color else None)
                 return {
@@ -116,22 +116,10 @@ def main(args=None):
                     'description': repo_obj.description,
                 }
 
-            # get a list of names so we can compare items
-            # iter all of my repos, only adding new items
-            # could break here, but generally a user doesnt have thousands of repos
-            names = set([r['full_name'] for r in db.all_repos()])
-            for repo in g.repositories():
-                if repo.full_name not in names:
-                    repo_list.append(create_repo(repo))
-
-            # github username
-            user_name = g.me().login
-
             # CHANGED: iter starred repos, same basic logic as master
             for repo in g.starred(sort='created', direction='desc', number=-1):
                 # for newly starred repos, if this matches the most recently starred repo, exit
-                # ignores any of my own repos in the search
-                if db.get_latest_repo_full_name(user_name) == repo.full_name:
+                if db.get_latest_repo_full_name() == repo.full_name:
                     break
                 repo_list.append(create_repo(repo))
 

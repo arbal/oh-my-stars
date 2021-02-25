@@ -1,16 +1,11 @@
 ## FORKED CHANGES
 
-In addition to any of your starred repos, my fork also indexes all of your own repos, so its easy to search/grab the link for one of those.
-
-It also simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
+This simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
 
 Example:
 
-(One of my repos, and one of my starred repos)
-
 ```shell
  $ mystars mint
-seanbreckenridge/mint [https://github.com/seanbreckenridge/mint] Python Wrapper script/code to interact with mintable; to keep track of my accounts/transactions and create a personal budget.
 kevinschaich/mintable [https://github.com/kevinschaich/mintable] TypeScript 🍃 Automate your personal finances – for free, with no ads, and no data collection.
 # just print all results
 $ mystars --list
@@ -33,18 +28,18 @@ perl -E 'print "`"x3, "\n"'
 I've also removed the limit for the number of entries the `-3` flag returns (`JSON`), so this can be used with [`jq`](https://stedolan.github.io/jq/) to parse/search the results:
 
 ```bash
-$ mystars --list -c=never -3 | jq -r '.items | .[3]'
+mystars --list -c=never -3 | jq -r '.items | .[16]'
 {
-  "title": "seanbreckenridge/albums",
-  "subtitle": "an amalgamation of acclaimed album lists [Python]",
-  "arg": "https://github.com/seanbreckenridge/albums"
+  "title": "tmcw/big",
+  "subtitle": "presentations for busy messy hackers [JavaScript]",
+  "arg": "https://github.com/tmcw/big"
 }
-$ mystars --list -c=never -3 | jq -r '.items | .[] | .arg' | shuf -n5
-https://github.com/seanbreckenridge/vps
-https://github.com/seanbreckenridge/discord_data
-https://github.com/sonic-pi-net/sonic-pi
-https://github.com/seanbreckenridge/jikan-rest-docker
-https://github.com/karlicoss/cachew
+mystars --list -c=never -3 | jq -r '.items | .[] | .arg' | shuf -n5
+https://github.com/bootandy/dust
+https://github.com/karlicoss/HPI
+https://github.com/jameslittle230/stork
+https://github.com/ripienaar/free-for-dev
+https://github.com/paulgalow/albumart-dl
 ```
 
 To Install:
