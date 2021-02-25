@@ -1,6 +1,4 @@
-## FORKED CHANGES
-
-This simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
+This fork simplifies the summary to one line each, and doesn't print a count/summary, and just prints the matches one after another; that makes it easier to process with common shell tools like `grep` or `fzf`.
 
 Example:
 
