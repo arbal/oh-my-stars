@@ -24,14 +24,16 @@ try:
 except ImportError:
     import pyreadline as readline
 
-    
+
 MY_STARS_HOME = os.path.join(os.path.expanduser('~'), '.oh-my-stars')
+
+NETRC = os.environ.get("OH_MY_STARS_NETRC")
 
 
 def get_auth_from_netrc(hostname):
     """Try to find login auth in ``~/.netrc``. Return ``(user, pwd)`` tuple. """
     try:
-        auth = netrc()
+        auth = netrc(file=NETRC)
     except IOError as cause:
         if cause.errno != errno.ENOENT:
             raise

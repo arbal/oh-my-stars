@@ -51,6 +51,8 @@ To Install:
 
 `pip install git+https://github.com/seanbreckenridge/oh-my-stars`
 
+This also lets you set a custom location for the `.netrc` file instead of having it at `~/.netrc`, to avoid possible conflicts with other applications/tools. To do so, you can set the `OH_MY_STARS_NETRC` environment variable to the location of your `.netrc` file
+
 ---
 
 # oh-my-stars
