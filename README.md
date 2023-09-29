@@ -27,8 +27,7 @@ URL="$(echo "${PICKED}" | urlextract)"
 }
 ```
 
-- Uses [`urlextract`](https://pypi.org/project/urlextract/), and some of my personal clipboard/browser scripts, see [here](https://sean.fish/d/?dark) for an index/reference.
-
+- Uses [`urlextract`](https://pypi.org/project/urlextract/) and [clipcopy](https://github.com/seanbreckenridge/core/blob/main/shellscripts/clipcopy)
 
 I've also removed the limit for the number of entries the `-3` flag returns (`JSON`), so this can be used with [`jq`](https://stedolan.github.io/jq/) to parse/search the results:
 
