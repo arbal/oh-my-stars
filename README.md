@@ -16,7 +16,7 @@ I commonly use the following script, to search for a repo I've starred and copy 
 
 ```bash
 #!/bin/bash
-# https://github.com/seanbreckenridge/oh-my-stars
+# https://github.com/purarue/oh-my-stars
 PICKED="$(mystars "$@" | fzf --ansi)" || exit $?
 printf '%s\n' "${PICKED}"
 URL="$(echo "${PICKED}" | urlextract)"
@@ -27,7 +27,7 @@ URL="$(echo "${PICKED}" | urlextract)"
 }
 ```
 
-- Uses [`urlextract`](https://pypi.org/project/urlextract/) and [clipcopy](https://github.com/seanbreckenridge/seanb-utils/blob/main/shellscripts/clipcopy)
+- Uses [`urlextract`](https://pypi.org/project/urlextract/) and [clipcopy](https://github.com/purarue/pura-utils/blob/main/shellscripts/clipcopy)
 
 I've also removed the limit for the number of entries the `-3` flag returns (`JSON`), so this can be used with [`jq`](https://stedolan.github.io/jq/) to parse/search the results:
 
@@ -48,7 +48,7 @@ https://github.com/paulgalow/albumart-dl
 
 To Install:
 
-`pip install git+https://github.com/seanbreckenridge/oh-my-stars`
+`pip install git+https://github.com/purarue/oh-my-stars`
 
 This also lets you set a custom location for the `~/.netrc` file instead of having it at `~/.netrc`, to avoid possible conflicts with other applications/tools. To do so, you can set the `OH_MY_STARS_NETRC` environment variable to the location of your `~/.netrc` file
 
